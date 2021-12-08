@@ -27,6 +27,6 @@ let parkData = axios.get('https://developer.nps.gov/api/v1/parks?&api_key=H3HVNx
 
 console.log(parkData);
 
-module.exports = {
-    parkData
-}
+// module.exports = {
+//     parkData
+// }
