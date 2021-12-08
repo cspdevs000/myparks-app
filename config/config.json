@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "express_authentication_development",
+    "database": "myparks_dev",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
