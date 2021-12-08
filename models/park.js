@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Park.init({
-    fullName: DataTypes.STRING,
-    designation: DataTypes.STRING,
-    description: DataTypes.STRING,
-    weatherInfo: DataTypes.STRING,
-    image: DataTypes.STRING
+    fullName: DataTypes.STRING(1000),
+    designation: DataTypes.STRING(1000),
+    description: DataTypes.TEXT(10000),
+    weatherInfo: DataTypes.TEXT(10000),
+    image: DataTypes.STRING(1000)
   }, {
     sequelize,
     modelName: 'Park',

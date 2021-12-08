@@ -9,19 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fullName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       designation: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT(10000)
       },
       weatherInfo: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT(10000)
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       createdAt: {
         allowNull: false,
