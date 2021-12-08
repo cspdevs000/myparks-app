@@ -22,6 +22,7 @@ let parkData = axios.get('https://developer.nps.gov/api/v1/parks?&api_key=H3HVNx
         console.log(resp.data.data[1].operatingHours);
         console.log(resp.data.data[1].weatherInfo);
         console.log(resp.data.data[1].images);
+        console.log(resp.data.data[1].entranceFees[0].cost);
         return resp.data.data[1].fullName;
 });
 
