@@ -19,7 +19,7 @@ router.get('/logout', (req, res) => {
 });  
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/portals/home',
     failureRedirect: '/auth/login',
     successFlash: 'Welcome back ...',
     failureFlash: 'Either email or password is incorrect' 
@@ -38,7 +38,7 @@ router.post('/signup', async (req, res) => {
           // if created, success and we will redirect back to / page
           console.log(`----- ${user.name} was created -----`);
           const successObject = {
-              successRedirect: '/',
+              successRedirect: '/portals/home',
               successFlash: `Welcome ${user.name}. Account was created and logging in...`
           }
           // 
@@ -56,6 +56,10 @@ router.post('/signup', async (req, res) => {
           res.redirect('/auth/signup');
     }
 });
+
+// router.get('/', function(req, res) { 
+//   res.json({ message: 'Welcome to myParks' });
+// });
   
 
 module.exports = router;

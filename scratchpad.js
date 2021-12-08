@@ -50,3 +50,13 @@ Park.create({
 // module.exports = {
 //     parkData
 // }
+
+
+//todo -- seed static data
+        //set up index route(s) for the park pages
+        //when user adds park to myParks, create new instance of the park w a myParks boolean of true
+        //at new path, allow user to post memories (text and/or images) to be stored in db
+        //suggest parks to visit that excludes already visited parks
+        // style index and park pages
+        // style memories page / make a feed type aspect for later social interaction
+        // allow other users to see users visited parks etx

@@ -46,6 +46,8 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 // controllers
 app.use('/auth', require('./controllers/auth'));
+app.use('/portals', require('./controllers/portals'));
+app.use('/parks', require('./controllers/parks'));
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
@@ -53,3 +55,4 @@ const server = app.listen(PORT, () => {
 });
 
 module.exports = server;
+module.exports = app;

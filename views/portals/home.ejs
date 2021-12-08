@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap" rel="stylesheet">
-    <title>LOG</title>
+    <title>Home</title>
 </head>
 <body>
     <!-- <div class="navbar">
@@ -18,7 +18,20 @@
             <li><a href="/myParks">myParks</a></li>
           </ul>
     </div> -->
-    <h1>LOGIN ZONE</h1>
+    <h1>HOMEPAGE</h1>
     <br>
+    <% for( let i = 0; i < parks.length; i++ ) { %>
+        <% let p = parks[i]; %> 
+        <% p = p.toJSON(); %> 
+        <h1><%= p.fullName %> </h1>
+        <h2><%= p.designation %></h2>
+        <h2><%= p.description %></h2>
+        <h2><%= p.weatherInfo %></h2>
+        <img src="<%= p.image %>" alt="" srcset="">
+        <!-- <a href="/albums/edit/<%= p.id %>">Edit</a>  -->
+        <!-- ^this line adds edit button^ -->
+        <!-- <a href="/portals/parks/<%= p.id %>">View Park</a> -->
+        <hr>
+    <% } %>
 </body>
 </html>
