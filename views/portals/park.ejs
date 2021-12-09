@@ -16,13 +16,19 @@
             <li><a href="/parks">Parks</a></li>
             <li><a href="/myParks">myParks</a></li>
     </div>
-    <h1>Welcome to myParks</h1>
-    <br><br>
-    <h3>a social application for national park visitors</h3>
-    <br><br>
-    <div class="search">
-        <input type="search" name="search" id="search" placeholder="search parks">
+    <!-- <h1>PARK VIEWPAGE</h1>
+    <br> -->
+    <h1><%= park.fullName %> </h1><br>
+    <!-- <h2><%= park.designation %> </h2> -->
+    <h3><%= park.description %> </h3><br>
+    <h3><%= park.weatherInfo %> </h3><br>
+    <div class="parkImage">
+        <img src="<%= park.image %>" alt="" srcset="">
     </div>
+    <br>
+    <h3>Been here before?</h3>
+    <br>
+    <input type="button" value="Add to myParks">
     <br><br><br>
     <div class="logoutprofile">
         <li><a href="/auth/logout">Logout</a></li>

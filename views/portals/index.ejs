@@ -16,17 +16,18 @@
             <li><a href="/parks">Parks</a></li>
             <li><a href="/myParks">myParks</a></li>
     </div>
-    <h1>Welcome to myParks</h1>
+    <% for( let i = 0; i < parks.length; i++ ) { %>
+        <% let p = parks[i]; %> 
+        <% p = p.toJSON(); %> 
+        <h1><%= p.fullName %></h1>
+        <a href="park/<%= p.id %>">View Park</a>
+        <hr>
+    <% } %>
     <br><br>
-    <h3>a social application for national park visitors</h3>
-    <br><br>
-    <div class="search">
-        <input type="search" name="search" id="search" placeholder="search parks">
-    </div>
-    <br><br><br>
     <div class="logoutprofile">
         <li><a href="/auth/logout">Logout</a></li>
         <li><a href="/profile">Profile</a></li>
     </div>
+
 </body>
 </html>

@@ -15,36 +15,28 @@ const { Park } = require("./models");
 //     }
 // });
 
-// let parkData = axios.get('https://developer.nps.gov/api/v1/parks?&api_key=H3HVNxmSbQNtQ6K9ek1o4qYpSJ27A8VaEiOAN32q').then (resp => {
-        // console.log(resp.data);
-        // console.log(resp.data.data[0].fullName);
-        // console.log(resp.data.data[0].designation);
-        // console.log(resp.data.data[0].description);
-        // console.log(resp.data.data[1].operatingHours);
-        // console.log(resp.data.data[0].weatherInfo);
-        // console.log(resp.data.data[0].images);
-        // console.log(resp.data.data[1].entranceFees[0].cost);
-        // return resp.data.data[1].fullName;
+// let parkData = axios.get('https://developer.nps.gov/api/v1/parks?start=450&api_key=F8jym7h6NP3G6wCttcxUotmRQ2ayjRWN06T2Xevg').then (resp => {
+//         console.log(resp.data.data[14].fullName);
+//         console.log(resp.data.data[14].designation);
+//         console.log(resp.data.data[14].description);
+//         console.log(resp.data.data[14].weatherInfo);
+//         console.log(resp.data.data[14].images);
 // });
 // console.log(parkData);
 
-Park.create({
-    fullName: "Abraham Lincoln Birthplace National Historic Park",
-    designation: "National Historical Park",
-    description: "For over a century people from around the world have come to rural Central Kentucky to honor the humble beginnings of our 16th president, Abraham Lincoln.",
-    weatherInfo: "There are four distinct seasons in Central Kentucky. However, temperature and weather conditions can vary widely within those seasons.",
-    image: "https://www.nps.gov/common/uploads/structured_data/3C861078-1DD8-B71B-0B774A242EF6A706.jpg"
-})
-.then(function(newPark) {
-    console.log('NEW PARK', newPark.toJSON());
-})
-.catch(function(error) {
-    console.log('ERROR', error);
-})
-
-//says text string is too long, tried text as datatype cause supposedly unlimited but still doesn't work
-// tried updating model to (1000) also doesn't work
-
+// Park.create({
+//     fullName: "Zion National Park",
+//     designation: "National Park",
+//     description: "Follow the paths where native people and pioneers walked. Gaze up at massive sandstone cliffs of cream, pink, and red that soar into a brilliant blue sky. Experience wilderness in a narrow slot canyon.",
+//     weatherInfo: "Zion is known for a wide range of weather conditions. Temperatures vary with changes in elevation and day/night temperatures may differ by over 30°F.",
+//     image: "https://www.nps.gov/common/uploads/structured_data/3C7F04EA-1DD8-B71B-0BF8CE99D6958A0E.jpg"
+// })
+// .then(function(newPark) {
+//     console.log('NEW PARK', newPark.toJSON());
+// })
+// .catch(function(error) {
+//     console.log('ERROR', error);
+// })
 
 
 // module.exports = {
