@@ -14,14 +14,20 @@
     <div class="navbar">
             <li><a href="/home">Home</a></li>
             <li><a href="/parks">Parks</a></li>
-            <li><a href="/myParks">myParks</a></li>
+            <li><a href="/myparks">myParks</a></li>
     </div>
     <h1>Welcome to myParks</h1>
     <br><br>
     <h3>a social application for national park visitors</h3>
     <br><br>
     <div class="search">
-        <input type="search" name="search" id="search" placeholder="search parks">
+        <input type="search" name="search" id="search" list="searchList" placeholder="search parks">
+        <datalist id="searchList">
+            <% for( let i = 0; i < parks.length; i++ ) { %>
+                <% let park = parks[i].toJSON(); %> 
+                <option value="<%= park.fullName %>"></option>
+            <% } %>
+        </datalist>
     </div>
     <br><br><br>
     <div class="logoutprofile">
