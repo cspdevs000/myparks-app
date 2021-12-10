@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require("../config/ppConfig");
 const isLoggedIn = require('../middleware/isLoggedIn');
 const db = require('../models');
-const { User, Park, MyPark, Memory } = require('../models');
+const { User, Park, MyPark, Memory, Text } = require('../models');
 
 router.get('/home', function (req, res) {
     Park.findAll()
@@ -86,13 +86,17 @@ router.get('/memories/:id', isLoggedIn, function (req, res) {
                     Park.findByPk(parkIndex)
                         .then(function (memoryList) {
                             park = park.toJSON();
-                            // let arr = [];
-                            // for (let i = 0; i < memoryList.length; i++) {
-                            //     let memory = memoryList[i];
-                            //     arr.push( await Memory.findByPk(memory.image));
-                            // }
-                            // console.log('is this park', park);
-                            res.render('portals/memories', { park });
+                            Text.findAll({
+                                where: { userId:req.user.id }
+                            })
+                            .then( async function (textList) {
+                                let arr = [];
+                                for (let i = 0; i < textList.length; i++) {
+                                    let text = textList[i];
+                                    arr.push( await Text.findByPk(text.id));
+                                }
+                                res.render('portals/memories', { park, text:arr });
+                            })
                         })
                 } else {
                     console.log('This page does not exist');
@@ -146,12 +150,12 @@ router.post('/memories/:id', isLoggedIn, function (req, res) {
     console.log("is this park", parkIndex);
     let userIndex = req.user.id;
     console.log("user id is", userIndex);
-    let imageFile = req.body.uploadImage;
-    console.log("what is image", imageFile);
-    Memory.create({
+    let textPost = req.body.uploadText;
+    console.log("what is text", textPost);
+    Text.create({
         userId: Number(req.user.id),
         parkId: Number(req.body.id),
-        image: req.body.uploadImage
+        post: String(req.body.uploadText)
     })
     .then(function(newMemory) {
         newMemory = newMemory.toJSON();
@@ -162,6 +166,28 @@ router.post('/memories/:id', isLoggedIn, function (req, res) {
         console.log('error', error);
     })
 });
+
+// router.post('/memories/:id', isLoggedIn, function (req, res) {
+//     let parkIndex = req.body.id;
+//     console.log("is this park", parkIndex);
+//     let userIndex = req.user.id;
+//     console.log("user id is", userIndex);
+//     let imageFile = req.body.uploadImage;
+//     console.log("what is image", imageFile);
+//     Memory.create({
+//         userId: Number(req.user.id),
+//         parkId: Number(req.body.id),
+//         image: req.body.uploadImage
+//     })
+//     .then(function(newMemory) {
+//         newMemory = newMemory.toJSON();
+//         console.log('new Memory', newMemory);
+//         res.redirect('/myparks');
+//     })
+//     .catch(function(error) {
+//         console.log('error', error);
+//     })
+// });
 
 router.delete('/myparks', function (req, res) {
     let user = Number(req.user.get().id);
@@ -180,3 +206,4 @@ router.delete('/myparks', function (req, res) {
 });
 
 module.exports = router;
+

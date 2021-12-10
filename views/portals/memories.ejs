@@ -18,15 +18,24 @@
             <li><a href="/myparks">myParks</a></li>
     </div>
     <form method="POST" action="/memories/<%= park.id %>">
-    <h1>my MEMOREEEZ for</h1>
-    <h1><%= park.fullName %> </h1><br>
+    <h1>my memories for</h1>
+    <h2><%= park.fullName %> </h2><br>
     <div class="memories">
 
     </div>
-    <div class="container">
-        <input type="file"
+    <div class="memories">
+        <input type="text" name="uploadText" id="uploadText" placeholder="add more memories here">
+        <!-- <br><br><br> -->
+        <!-- <input type="file"
         id="uploadImage" name="uploadImage" class="field"
-        accept="image/png, image/jpeg, image/jpg">
+        accept="image/png, image/jpeg, image/jpg"> -->
+        <br><br><br>
+        <% for( let i = 0; i < text.length; i++ ) { %>
+            <% let t = text[i]; %> 
+            <% t = t.toJSON(); %> 
+            <h2><%= t.post %></h2>
+            <br>
+            <% } %>
     </div><br>
     <input type="submit" value="Post Memory"><br><br><br>
 
