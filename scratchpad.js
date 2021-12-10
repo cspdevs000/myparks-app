@@ -45,8 +45,10 @@ const { Park } = require("./models");
 // }
 
 //todo --
-        //homepage search->park page redirect .. copy the get route for the parks page n incorporate code for receiving button input
-        //fix delete
+        //make if statement for if user has already added park to myparks
+        //^^or make button go away if user has already added
+        //add isLoggedIn to some stuff
+        //map pin feature
         //create memories route / page
         // style memories page / make a feed type aspect for later social interaction
         // allow other users to see users visited parks etx

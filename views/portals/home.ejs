@@ -20,10 +20,10 @@
     <br><br>
     <h3>a social application for national park visitors</h3>
     <br><br>
-    <form action="/park/<%= parks.id %>" method="get">
+    <form action="/home" method="POST">
         <div class="searchParks">
-            <input type="text" id="search" list="searchList" placeholder="search parks">
-            <datalist id="searchList">
+            <input type="text" id="search" name="searchList" list="theData" placeholder="search parks">
+            <datalist id="theData">
                 <% for( let i = 0; i < parks.length; i++ ) { %>
                 <% let park = parks[i].toJSON(); %> 
                 <option value="<%= park.fullName %>"></option>

@@ -3,6 +3,9 @@ const router = express.Router();
 const passport = require("../config/ppConfig");
 const db = require('../models');
 const { User, Park, MyPark } = require('../models');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const dom = new JSDOM;
 
 router.get('/home', function (req, res) {
     Park.findAll()
@@ -33,12 +36,12 @@ router.get('/myparks', function (req, res) {
         where: { userId:req.user.id }
     })
         .then( async function (myParkList) {
-            console.log('found myParks', myParkList);
+            // console.log('found myParks', myParkList);
                 //todo - loop thru myParkList
                 let arr = [];
                 for (let i = 0; i < myParkList.length; i++) {
                     let myPark = myParkList[i];
-                    console.log(myPark.parkId);
+                    // console.log(myPark.parkId);
                 arr.push( await Park.findByPk(myPark.parkId));
                 }
                 console.log(arr);
@@ -76,6 +79,22 @@ router.get('/park/:id', function (req, res) {
         });
 });
 
+router.post('/home', function (req, res) {
+    let chosenPark = req.body.searchList;
+    // console.log("park CHOSEN", chosenPark);
+    Park.findOne({
+        where: { fullName:req.body.searchList }
+    })
+    .then(function (chosenPark) {
+        // console.log('chosen PARK', chosenPark);
+        let parkIndex = chosenPark.dataValues['id'];
+        // console.log('id hopefully is', parkIndex);
+        res.redirect('/park/' + parkIndex);
+    })
+    .catch(function (error) {
+        console.log('error', error);
+    })
+});
 
 router.post('/myparks', function (req, res) {
     // let parkIndex = req.body.id;
@@ -89,6 +108,7 @@ router.post('/myparks', function (req, res) {
     .then(function(newMyPark) {
         newMyPark = newMyPark.toJSON();
         console.log('new MyPark', newMyPark);
+        // dom.window.document.querySelector(".addPark").classList.toggle("hidden");
         res.redirect('/myparks');
     })
     .catch(function(error) {
@@ -98,9 +118,9 @@ router.post('/myparks', function (req, res) {
 
 router.delete('/myparks', function (req, res) {
     let user = Number(req.user.get().id);
-    console.log("rqqqqq", user);
+    // console.log("rqqqqq", user);
     let park = Number(req.body.myParksId);
-    console.log("rqqqqq", park);
+    // console.log("rqqqqq", park);
     MyPark.destroy({ where: { userId: user, parkId: park } })
         .then(function (response) {
             console.log('myPark deleted', response);
