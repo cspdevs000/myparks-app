@@ -16,5 +16,20 @@
         <li><a href="/parks">Parks</a></li>
         <li><a href="/myparks">myParks</a></li>
 </div>
-    <h1>myParks page yeeeeeeaaaaaayyy</h1>
+    <h1>myParks</h1>
+    <br><br>
+    <div>
+        <% for( let i = 0; i < myPark.length; i++ ) { %>
+            <% let m = myPark[i]; %> 
+            <% m = m.toJSON(); %> 
+            <h2><%= m.fullName %></h2>
+            <a href="park/<%= m.id %>">Memories</a>
+            <form method="POST" action="/myparks/?_method=DELETE">
+            <input type="submit" value="Delete From myParks">
+            <label class="hidden" for="myParksId">ID:</label>
+            <input type="text" class="hidden" id="myParksId" name="myParksId" value="<%= m.id %>">
+            </form>
+            <br><br>
+            <% } %>
+        </div>
 </body>

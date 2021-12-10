@@ -26,7 +26,8 @@
     <div class="parkImage">
         <img src="<%= park.image %>" alt="" srcset="">
     </div>
-    <h4><%= park.id %> </h4>
+    <label class="hidden" for="id">ID:</label>
+    <input type="text" class="hidden" id="id" name="id" value="<%= park.id %>">
     <br>
     <h3>Been here before?</h3>
     <br>

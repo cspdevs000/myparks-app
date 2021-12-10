@@ -2,6 +2,7 @@
     font-family: 'Rajdhani', sans-serif;
     text-align: center;
     margin: 0 auto;
+    /* background-image: url('/graphics/cave1.jpeg'); */
 }
 
 img {
@@ -42,6 +43,10 @@ h3 {
     padding: 100px;
     display: flex;
     justify-content: center;
+}
+
+.hidden {
+    display: none;
 }
 
 #search {

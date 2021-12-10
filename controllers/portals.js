@@ -29,10 +29,20 @@ router.get('/parks', function (req, res) {
 });
 
 router.get('/myparks', function (req, res) {
-    Park.findAll()
-        .then(function (parkList) {
-            // console.log('found all parks', parkList);
-            res.render('portals/myparks', { parks: parkList });
+    MyPark.findAll({
+        where: { userId:req.user.id }
+    })
+        .then( async function (myParkList) {
+            console.log('found myParks', myParkList);
+                //todo - loop thru myParkList
+                let arr = [];
+                for (let i = 0; i < myParkList.length; i++) {
+                    let myPark = myParkList[i];
+                    console.log(myPark.parkId);
+                arr.push( await Park.findByPk(myPark.parkId));
+                }
+                console.log(arr);
+            res.render('portals/myparks', { myPark : arr });
         })
         .catch(function (err) {
             console.log('error', err);
@@ -68,42 +78,38 @@ router.get('/park/:id', function (req, res) {
 
 
 router.post('/myparks', function (req, res) {
-    let parkIndex = req.park.fullName;
-    // console.log('what am i looking at', Park.id);
-    // const parkId = Park.findByPk(parkIndex);
-    console.log("is this park", parkIndex);
-    // const userId = User.findOne( )
-    // Park.findOne({
-    //     where : { id: id }
-    // })
-    //     .then(function (parkFound) {
-    //         console.log('FOUND PARK', parkFound.toJSON());
-    //         parkFound.createMyPark({
-    //             parkId: Number(req.body.id),
-    //             userId: Number(User.id),
-    //         })
-    //             .then(function (newMyPark) {
-    //                 newMyPark = newMyPark.toJSON();
-    //                 console.log('NEW MyPark', newMyPark);
-    //                 res.redirect(`/portals/myparks`);
-    //             })
-    //             .catch(function (err) {
-    //                 console.log('error', err);
-    //             })
-    //     })
-    //     .catch(function (err) {
-    //         console.log('ERROR', err);
-    //     });
+    // let parkIndex = req.body.id;
+    // console.log("is this park", parkIndex);
+    // let userIndex = req.user.id;
+    // console.log("user id is", userIndex);
+    MyPark.create({
+        userId: Number(req.user.id),
+        parkId: Number(req.body.id)
+    })
+    .then(function(newMyPark) {
+        newMyPark = newMyPark.toJSON();
+        console.log('new MyPark', newMyPark);
+        res.redirect('/myparks');
+    })
+    .catch(function(error) {
+        console.log('error', error);
+    })
 });
 
-
-
-
-
-
-// router.post('/', isLoggedIn, async (req, res) => {
-//     const user = await db.user.findOne({where:{id:req.user.id}});
-//     const
-// })
+router.delete('/myparks', function (req, res) {
+    let user = Number(req.user.get().id);
+    console.log("rqqqqq", user);
+    let park = Number(req.body.myParksId);
+    console.log("rqqqqq", park);
+    MyPark.destroy({ where: { userId: user, parkId: park } })
+        .then(function (response) {
+            console.log('myPark deleted', response);
+            res.redirect('/myparks');
+        })
+        .catch(function (error) {
+            console.log('error', error);
+            res.render('404', { message: 'Thingy was not deleted' });
+        })
+});
 
 module.exports = router;

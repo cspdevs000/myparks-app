@@ -45,11 +45,8 @@ const { Park } = require("./models");
 // }
 
 //todo --
-        //homepage search->park page redirect
-        //create myParks model (userid, parkid)
-        // add to myParks button functionality
-        //when user adds park to myParks, create new instance of the park w a myParks boolean of true
-        //at new path, allow user to post memories (text and/or images) to be stored in db
-        //suggest parks to visit that excludes already visited parks
+        //homepage search->park page redirect .. copy the get route for the parks page n incorporate code for receiving button input
+        //fix delete
+        //create memories route / page
         // style memories page / make a feed type aspect for later social interaction
         // allow other users to see users visited parks etx
