@@ -11,19 +11,22 @@
     <title>Home</title>
 </head>
 <body>
+    <%- include('../partials/alerts') %>
+    <br>
+    <h1>Please sign up below..</h1>
 <div class="container">
     <form action="/auth/signup" method="POST">
         <label for="new-email">Email</label>
-        <input id="new-email" type="email" name="email" required>
+        <input class="field" id="new-email" type="email" name="email" required><br>
         
         <label for="new-name">Name</label>
-        <input id="new-name" type="text" name="name" required>
+        <input class="field" id="new-name" type="text" name="name" required><br>
         
         <label for="new-password">Password</label>
-        <input id="new-password" type="password" name="password" required>
+        <input class="field" id="new-password" type="password" name="password" required><br>
         
         <input type="submit" value="Sign up">
-        <br><br><br>
+        <br><br>
         <a href="/">Back to Landing Page</a>
     </form>
 </div>

@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const passport = require("../config/ppConfig");
+const isLoggedIn = require('../middleware/isLoggedIn');
 const db = require('../models');
-const { User, Park, MyPark } = require('../models');
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const dom = new JSDOM;
+const { User, Park, MyPark, Memory } = require('../models');
 
 router.get('/home', function (req, res) {
     Park.findAll()
@@ -31,7 +29,7 @@ router.get('/parks', function (req, res) {
         })
 });
 
-router.get('/myparks', function (req, res) {
+router.get('/myparks', isLoggedIn, function (req, res) {
     MyPark.findAll({
         where: { userId:req.user.id }
     })
@@ -44,8 +42,8 @@ router.get('/myparks', function (req, res) {
                     // console.log(myPark.parkId);
                 arr.push( await Park.findByPk(myPark.parkId));
                 }
-                console.log(arr);
-            res.render('portals/myparks', { myPark : arr });
+                // console.log(arr);
+            res.render('portals/myparks', { myPark: arr });
         })
         .catch(function (err) {
             console.log('error', err);
@@ -79,6 +77,34 @@ router.get('/park/:id', function (req, res) {
         });
 });
 
+router.get('/memories/:id', isLoggedIn, function (req, res) {
+        let parkIndex = Number(req.params.id);
+        Park.findByPk(parkIndex)
+            .then(function (park) {
+                if (park) {
+                    let parkIndex = park.toJSON().parkId;
+                    Park.findByPk(parkIndex)
+                        .then(function (memoryList) {
+                            park = park.toJSON();
+                            // let arr = [];
+                            // for (let i = 0; i < memoryList.length; i++) {
+                            //     let memory = memoryList[i];
+                            //     arr.push( await Memory.findByPk(memory.image));
+                            // }
+                            // console.log('is this park', park);
+                            res.render('portals/memories', { park });
+                        })
+                } else {
+                    console.log('This page does not exist');
+                    res.render('404', { message: 'Page does not exist' });
+                }
+            })
+            .catch(function (err) {
+                console.log('error', err);
+                res.json({ message: 'Error, Page does not exist' });
+            });
+});
+
 router.post('/home', function (req, res) {
     let chosenPark = req.body.searchList;
     // console.log("park CHOSEN", chosenPark);
@@ -96,7 +122,7 @@ router.post('/home', function (req, res) {
     })
 });
 
-router.post('/myparks', function (req, res) {
+router.post('/myparks', isLoggedIn, function (req, res) {
     // let parkIndex = req.body.id;
     // console.log("is this park", parkIndex);
     // let userIndex = req.user.id;
@@ -108,7 +134,28 @@ router.post('/myparks', function (req, res) {
     .then(function(newMyPark) {
         newMyPark = newMyPark.toJSON();
         console.log('new MyPark', newMyPark);
-        // dom.window.document.querySelector(".addPark").classList.toggle("hidden");
+        res.redirect('/myparks');
+    })
+    .catch(function(error) {
+        console.log('error', error);
+    })
+});
+
+router.post('/memories/:id', isLoggedIn, function (req, res) {
+    let parkIndex = req.body.id;
+    console.log("is this park", parkIndex);
+    let userIndex = req.user.id;
+    console.log("user id is", userIndex);
+    let imageFile = req.body.uploadImage;
+    console.log("what is image", imageFile);
+    Memory.create({
+        userId: Number(req.user.id),
+        parkId: Number(req.body.id),
+        image: req.body.uploadImage
+    })
+    .then(function(newMemory) {
+        newMemory = newMemory.toJSON();
+        console.log('new Memory', newMemory);
         res.redirect('/myparks');
     })
     .catch(function(error) {

@@ -1,3 +1,8 @@
-const addPark = document.getElementById('addPark');
+// const addPark = document.getElementById('addPark');
+// const { Park } = require('./models');
 
-addPark.onclick
+// function hideButton() {
+//     console.log(Park.id);
+// }
+
+// hideButton();

@@ -15,7 +15,7 @@
         <li><a href="/home">Home</a></li>
         <li><a href="/parks">Parks</a></li>
         <li><a href="/myparks">myParks</a></li>
-</div>
+    </div>
     <h1>myParks</h1>
     <br><br>
     <div>
@@ -23,7 +23,7 @@
             <% let m = myPark[i]; %> 
             <% m = m.toJSON(); %> 
             <h2><%= m.fullName %></h2>
-            <a href="park/<%= m.id %>">Memories</a>
+            <a href="memories/<%= m.id %>">Memories</a>
             <form method="POST" action="/myparks/?_method=DELETE">
             <input type="submit" value="Delete From myParks">
             <label class="hidden" for="myParksId">ID:</label>
@@ -31,5 +31,9 @@
             </form>
             <br><br>
             <% } %>
+        </div>
+        <div class="logoutprofile">
+            <li><a href="/auth/logout">Logout</a></li>
+            <li><a href="/profile">Profile</a></li>
         </div>
 </body>

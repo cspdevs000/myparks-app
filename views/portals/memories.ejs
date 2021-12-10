@@ -17,28 +17,28 @@
             <li><a href="/parks">Parks</a></li>
             <li><a href="/myparks">myParks</a></li>
     </div>
-    <form method="POST" action="/myparks">
-    <!-- <h1>PARK VIEWPAGE</h1>
-    <br> -->
+    <form method="POST" action="/memories/<%= park.id %>">
+    <h1>my MEMOREEEZ for</h1>
     <h1><%= park.fullName %> </h1><br>
-    <!-- <h2><%= park.designation %> </h2> -->
-    <h3><%= park.description %> </h3><br>
-    <h3><%= park.weatherInfo %> </h3><br>
-    <div class="parkImage">
-        <img src="<%= park.image %>" alt="" srcset="">
+    <div class="memories">
+
     </div>
+    <div class="container">
+        <input type="file"
+        id="uploadImage" name="uploadImage" class="field"
+        accept="image/png, image/jpeg, image/jpg">
+    </div><br>
+    <input type="submit" value="Post Memory"><br><br><br>
+
+    <a href="/myparks">Back to myParks</a><br>
+    <a href="/park/<%= park.id %>">Back to main park page</a><br>
+    <br><br>
     <label class="hidden" for="id">ID:</label>
     <input type="text" class="hidden" id="id" name="id" value="<%= park.id %>">
-    <br>
-    <h3>Been here before?</h3>
-    <br>
-    <input id="addPark" type="submit" value="Add to myParks">
-    <br><br><br>
     <div class="logoutprofile">
         <li><a href="/auth/logout">Logout</a></li>
         <li><a href="/profile">Profile</a></li>
     </div>
     </form>
-    <script>src="../frontend.js"</script>
 </body>
 </html>
