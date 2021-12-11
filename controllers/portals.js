@@ -243,5 +243,20 @@ router.delete('/myparks', function (req, res) {
         })
 });
 
+
+router.delete('/', function (req, res) {
+    // console.log('id here', req.params.id);
+    // let postIndex = Number(req.params.id);
+    Text.destroy({ where: { id: req.body.id } })
+        .then(function (response) {
+            console.log('post deleted', response);
+            res.redirect('/myparks');
+        })
+        .catch(function (error) {
+            console.log('error', error);
+            res.render('404', { message: 'Thingy was not deleted' });
+        })
+});
+
 module.exports = router;
 
