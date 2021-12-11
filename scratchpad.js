@@ -45,10 +45,9 @@ const { Park } = require("./models");
 // }
 
 //todo --
+        //make separate controllers / clean up chaotic portals.js controller
         //make if statement for if user has already added park to myparks
         //^^or make button go away if user has already added
-        //add isLoggedIn to some stuff
+        //style memories page / make a feed type aspect for later social interaction
         //map pin feature
-        //create memories route / page
-        // style memories page / make a feed type aspect for later social interaction
         // allow other users to see users visited parks etx
