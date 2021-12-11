@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap" rel="stylesheet">
+    <title>Edit Memory</title>
+</head>
+<body>
+    <%- include('../partials/alerts') %>
+    <div class="navbar">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/parks">Parks</a></li>
+            <li><a href="/myparks">myParks</a></li>
+    </div>
+    <form method="POST" action="/?_method=PUT"><br><br>
+        <div class="container">
+          <label for="post">Memory:</label>
+          <input class="field" type="text" name="post" value="<%= text.post %>"><br><br>
+        </div>
+        <input type="submit" value="submit edit">
+        <label class="hidden" for="id">ID:</label>
+        <input type="text" class="hidden" id="id" name="id" value="<%= text.id %>">
+    </form>
+</body>

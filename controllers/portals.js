@@ -109,6 +109,44 @@ router.get('/memories/:id', isLoggedIn, function (req, res) {
             });
 });
 
+router.get('/edit/:id', function (req, res) {
+    // console.log('this is the id', req.params.id);
+    let postIndex = Number(req.params.id);
+    // console.log('HEREEEE', postIndex);
+    Text.findByPk(postIndex)
+        .then(function (text) {
+            if (text) {
+                text = text.toJSON();
+                // console.log('is this text', text);
+                res.render('portals/edit', { text });
+            } else {
+                // console.log('This post does not exist');
+                res.render('404', { message: 'Post does not exist' });
+            }
+        })
+        .catch(function (err) {
+            console.log('error', err);
+            // res.json({ message: 'Error, Album does not exist' });
+        });
+});
+
+router.put('/', function (req, res) {
+    // console.log('POST BODY', req.body.post);
+    // console.log('here is id', req.params.id);
+    // let postIndex = Number(req.params.id);
+    Text.update({
+        post: req.body.post,
+    }, { where: { id: req.body.id } })
+        .then(function (response) {
+            console.log('after update', response);
+            res.redirect('/myparks');
+        })
+        .catch(function (error) {
+            console.log('error', error);
+            res.render('404', { message: 'Update was not successful' })
+        });
+});
+
 router.post('/home', function (req, res) {
     let chosenPark = req.body.searchList;
     // console.log("park CHOSEN", chosenPark);
