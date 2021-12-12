@@ -72,6 +72,24 @@ h3 {
     display: none;
 }
 
+.signupLogin {
+    font-size: xx-large;
+}
+
+.myParksDiv {
+    border: violet;
+    border-style: groove;
+    border-width: 1px;
+    padding: 10px;
+}
+
+.myParksBottom {
+    display: inline-flex;
+    justify-content: space-around;
+    padding: 0px 20px 0px 40px;
+    margin: 0px 20px 0px 40px;
+}
+
 #addPark {
     background-color: brown;
     color: whitesmoke;

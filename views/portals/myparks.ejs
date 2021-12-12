@@ -18,22 +18,28 @@
     </div>
     <h1>myParks</h1>
     <br><br>
-    <div>
+    <div class="myParksDiv">
         <% for( let i = 0; i < myPark.length; i++ ) { %>
             <% let m = myPark[i]; %> 
             <% m = m.toJSON(); %> 
-            <h2><%= m.fullName %></h2>
-            <a href="memories/<%= m.id %>">Memories</a>
-            <form method="POST" action="/myparks/?_method=DELETE">
-            <input type="submit" value="Delete From myParks">
-            <label class="hidden" for="myParksId">ID:</label>
-            <input type="text" class="hidden" id="myParksId" name="myParksId" value="<%= m.id %>">
-            </form>
-            <br><br>
+            <div class="myParksDiv">
+                <h2><%= m.fullName %></h2>
+                <div class="myParksBottom">
+                    <form action="memories/<%= m.id %>">
+                        <input type="submit" value="Memories">
+                    </form>
+                    <form method="POST" action="/myparks/?_method=DELETE">
+                        <input type="submit" class="deleteButton" value="Delete From myParks">
+                        <label class="hidden" for="myParksId">ID:</label>
+                    <input type="text" class="hidden" id="myParksId" name="myParksId" value="<%= m.id %>">
+                </form>
+                </div>
+            </div>
+            <br>
             <% } %>
-        </div>
-        <div class="logoutprofile">
-            <li><a href="/auth/logout">Logout</a></li>
-            <li><a href="/profile">Profile</a></li>
-        </div>
+    </div>
+    <div class="logoutprofile">
+        <li><a href="/auth/logout">Logout</a></li>
+        <li><a href="/profile">Profile</a></li>
+    </div>
 </body>

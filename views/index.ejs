@@ -18,16 +18,21 @@
             <li><a href="/myParks">myParks</a></li>
           </ul>
     </div> -->
-    <h1>Please log in below..</h1>
-    <br>
+    <div class="container">
+        <h1>Welcome to myParks</h1>
+        <h3>a social archiving application for national park visitors</h3>
+        <br>
+    </div>
     <%- include('partials/alerts') %>
 
-    <% if (!currentUser) { %>
-      <li><a href="/auth/signup">Signup</a></li>
-      <li><a href="/auth/login">Login</a></li>
-  <% } else { %>
-      <li><a href="/auth/logout">Logout</a></li>
-      <li><a href="/profile">Profile</a></li>
-  <% } %>
+    <div class="signupLogin">
+        <% if (!currentUser) { %>
+            <li><a href="/auth/signup">Signup</a></li>
+            <li><a href="/auth/login">Login</a></li>
+        <% } else { %>
+            <li><a href="/auth/logout">Logout</a></li>
+            <li><a href="/profile">Profile</a></li>
+        <% } %>
+    </div>
 </body>
 </html>
