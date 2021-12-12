@@ -86,8 +86,13 @@ router.get('/memories/:id', isLoggedIn, function (req, res) {
                     Park.findByPk(parkIndex)
                         .then(function (memoryList) {
                             park = park.toJSON();
+                            let memoryParkId = park.id;
+                            // console.log('HEEEEEEREEEEE', memoryParkId);
                             Text.findAll({
-                                where: { userId:req.user.id }
+                                where: { 
+                                    userId: req.user.id,
+                                    parkId: memoryParkId
+                                }
                             })
                             .then( async function (textList) {
                                 let arr = [];
@@ -198,7 +203,7 @@ router.post('/memories/:id', isLoggedIn, function (req, res) {
     .then(function(newMemory) {
         newMemory = newMemory.toJSON();
         console.log('new Memory', newMemory);
-        res.redirect('/myparks');
+        res.redirect('/memories/' + parkIndex);
     })
     .catch(function(error) {
         console.log('error', error);
