@@ -19,7 +19,7 @@
     </div>
     <form method="POST" action="/?_method=PUT"><br><br>
         <div class="container">
-          <label for="post">Memory:</label>
+          <label for="post">edit memory here:</label><br>
           <input class="field" type="text" name="post" value="<%= text.post %>"><br><br>
         </div>
         <input type="submit" value="submit edit">
@@ -27,7 +27,7 @@
         <input type="text" class="hidden" id="id" name="id" value="<%= text.id %>">
     </form>
     <form method="POST" action="/?_method=DELETE">
-        <input type="submit" value="Delete Post">
+        <input type="submit" value="delete post">
         <label class="hidden" for="id">ID:</label>
         <input type="text" class="hidden" id="id" name="id" value="<%= text.id %>">
     </form>

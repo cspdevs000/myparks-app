@@ -19,17 +19,16 @@
     </div>
     <form method="POST" action="/memories/<%= park.id %>">
     <h1>my memories for</h1>
-    <h2><%= park.fullName %> </h2><br>
+    <h2><%= park.fullName %> </h2>
     <div class="memories">
-
-    </div>
-    <div class="memories">
-        <input type="text" name="uploadText" id="uploadText" placeholder="add more memories here">
-        <!-- <br><br><br> -->
-        <!-- <input type="file"
-        id="uploadImage" name="uploadImage" class="field"
-        accept="image/png, image/jpeg, image/jpg"> -->
-        <br><br><br>
+        <div class="container">
+            <input type="text" name="uploadText" id="uploadText" placeholder="add your memories here">
+            <!-- <br><br><br> -->
+            <!-- <input type="file"
+                id="uploadImage" name="uploadImage" class="field"
+                accept="image/png, image/jpeg, image/jpg"> -->
+            <input type="submit" value="Post Memory">
+        </div>
         <% for( let i = 0; i < text.length; i++ ) { %>
             <% let t = text[i]; %> 
             <% t = t.toJSON(); %> 
@@ -37,9 +36,7 @@
             <a href="/edit/<%= t.id %>">Edit</a>
             <br><br>
             <% } %>
-    </div><br>
-    <input type="submit" value="Post Memory"><br><br><br>
-
+    </div><br><br><br>
     <a href="/myparks">Back to myParks</a><br>
     <a href="/park/<%= park.id %>">Back to main park page</a><br>
     <br><br>
