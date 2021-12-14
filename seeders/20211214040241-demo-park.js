@@ -3,11 +3,11 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
   await queryInterface.bulkInsert('Parks', [{
-    fullName: 'Acadia National Park',
+    fullName: 'Arches National Park',
     designation: 'National Park',
-    description: 'Acadia National Park protects the natural beauty of the highest rocky headlands along the Atlantic coastline of the United States, an abundance of habitats, and a rich cultural heritage.',
-    weatherInfo: 'Located on Mount Desert Island in Maine, Acadia experiences all four seasons. Summer temperatures range from 45-90F (7-30C).',
-    image: 'https://www.nps.gov/common/uploads/structured_data/3C7B45AE-1DD8-B71B-0B7EE131C7DFC2F5.jpg',
+    description: 'Visit Arches to discover a landscape of contrasting colors, land forms, and textures unlike any other in the world. The park has over 2,000 natural stone arches and hundreds of soaring pinnacles, massive rock fins, and giant balanced rocks.',
+    weatherInfo: "Arches is part of the Colorado Plateau, a 'high desert' region that experiences wide temperature fluctuations, sometimes over 40 degrees in a single day.",
+    image: 'https://www.nps.gov/common/uploads/structured_data/3C79850F-1DD8-B71B-0BC4A88BA85DE6B0.jpg',
     createdAt: new Date(),
     updatedAt: new Date()
    }])   
