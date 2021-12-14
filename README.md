@@ -5,7 +5,7 @@ in order to use or contribute to the code of myParks, please fork and clone this
 you'll then need to set up your database, i recommend using the same name as the one contained in this repo's config.json. the command for this is `db:create myparks_dev`. run `sequelize db:migrate`, and then start the server with `node server.js`. you're ready to work!
 
 
-stretch goals to include "memory" elements to their visited parks which include anecdotes and images, as well as social functionality.
+stretch goals to include photo posts to their visited park memories as well as social functionality.
 
 
 ![wireframe](graphics/myParksWireframe.png)
