@@ -16,13 +16,15 @@
             <li><a href="/parks">Parks</a></li>
             <li><a href="/myParks">myParks</a></li>
     </div>
-    <% for( let i = 0; i < parks.length; i++ ) { %>
-        <% let p = parks[i]; %> 
-        <% p = p.toJSON(); %> 
-        <h1><%= p.fullName %></h1>
-        <a href="park/<%= p.id %>">View Park</a>
-        <hr>
-    <% } %>
+    <div class="park-tab">
+        <% for( let i = 0; i < parks.length; i++ ) { %>
+            <% let p = parks[i]; %> 
+            <% p = p.toJSON(); %> 
+            <h1><%= p.fullName %></h1>
+            <a href="park/<%= p.id %>">View Park</a>
+            <hr>
+            <% } %>
+    </div>
     <br><br>
     <div class="logoutprofile">
         <li><a href="/auth/logout">Logout</a></li>

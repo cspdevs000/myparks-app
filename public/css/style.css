@@ -2,19 +2,18 @@
     font-family: 'Rajdhani', sans-serif;
     text-align: center;
     margin: 0 auto;
-    /* background-image: url('/graphics/cave1.jpeg'); */
 }
 
-a:link {
-    color:rgb(39, 36, 36);
+body {
+    background-color: rgba(129, 187, 189, 0.404);
+}
+
+a {
+    color:rgb(114, 96, 96);
 }
 
 a:hover {
-    color: tomato;
-}
-
-a:visited {
-    color: rgb(90, 30, 90);
+    color: rgba(66, 15, 55, 0.521);
 }
 
 img {
@@ -46,7 +45,7 @@ h3 {
 }
 
 .navbar {
-    background-color: rgba(26, 24, 23, 0.438);
+    background-color: rgba(188, 132, 202, 0.315);
 }
 
 .logoutprofile {
@@ -89,6 +88,11 @@ h3 {
     padding: 0px 20px 0px 40px;
     margin: 0px 20px 0px 40px;
 }
+
+/* .park-tab {
+    height:15vh;
+    width:100vw;
+} */
 
 #addPark {
     background-color: brown;
