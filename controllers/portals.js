@@ -8,7 +8,6 @@ const { User, Park, MyPark, Memory, Text } = require('../models');
 router.get('/home', function (req, res) {
     Park.findAll()
         .then(function (parkList) {
-            // console.log('found all parks', parkList);
             res.render('portals/home', { parks: parkList });
         })
         .catch(function (err) {
@@ -35,11 +34,9 @@ router.get('/myparks', isLoggedIn, function (req, res) {
     })
         .then( async function (myParkList) {
             // console.log('found myParks', myParkList);
-                //todo - loop thru myParkList
                 let arr = [];
                 for (let i = 0; i < myParkList.length; i++) {
                     let myPark = myParkList[i];
-                    // console.log(myPark.parkId);
                 arr.push( await Park.findByPk(myPark.parkId));
                 }
                 // console.log(arr);
@@ -62,12 +59,10 @@ router.get('/park/:id', function (req, res) {
                 Park.findByPk(parkIndex)
                     .then(function (artist) {
                         park = park.toJSON();
-                        // console.log('is this park', park);
                         res.render('portals/park', { park });
                     })
             } else {
                 console.log('This park does not exist');
-                //render 404
                 res.render('404', { message: 'Park does not exist' });
             }
         })
